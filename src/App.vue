@@ -1,11 +1,9 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+  <Game />
 </template>
 
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-
+import Game from "./views/Game.vue"
 </script>
 
 <style>
@@ -15,5 +13,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+  background: url("./assets/bg-l.gif");
 }
 </style>
