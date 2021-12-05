@@ -19,7 +19,7 @@ const props = defineProps<{
   line: number[]
 }>()
 
-const isRedBg = (n) => props.line.includes(n)
+const isRedBg = (n: number) => props.line.includes(n)
 
 const emit = defineEmits<{
   (e: "whichClick" , n: number): void

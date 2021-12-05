@@ -10,12 +10,24 @@
         :line="line"
         @whichClick="handleClick"
     />
+    <div class="history">
+      <ol>
+        <HistoryItem
+            v-for="(item, index) of history"
+            :key="index"
+            :index="index"
+            :pos="item.pos"
+            @whichClick="moveHistory"
+        />
+      </ol>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import {ref, reactive, computed} from "vue";
 import Board from "../components/Board.vue"
+import HistoryItem from "../components/HistoryItem.vue"
 import { calculateWinner } from "../tools.ts"
 
 interface IHistory {
@@ -39,6 +51,7 @@ const status = computed(() => {
     line.value = winner.line
     return "Winner: " + winner.value
   } else {
+    line.value = []
     if (current.value.squares.every(item => !!item === true)) {
       return "No Winner!"
     } else {
@@ -57,6 +70,12 @@ const handleClick = (n: number):void => {
   })
   stepNumber.value += 1
   xIsNext.value = !xIsNext.value
+}
+
+const moveHistory = (n: number): void => {
+  stepNumber.value = n
+  history.splice(n + 1)
+  xIsNext.value = (n % 2) === 0
 }
 
 </script>
@@ -92,5 +111,12 @@ header span {
   font-size: 30px;
   font-weight: 700;
   color: #fff;
+}
+
+.history ol {
+  width: 500px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 </style>
