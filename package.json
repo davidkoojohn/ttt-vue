@@ -7,11 +7,11 @@
     "build": "vue-tsc --noEmit && vite build",
     "serve": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "node ./node_modules/vue-gh-pages/index.js"
   },
   "dependencies": {
-    "gh-pages": "^3.2.3",
-    "vue": "^3.2.23"
+    "vue": "^3.2.23",
+    "vue-gh-pages": "^1.19.1"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.9.3",
