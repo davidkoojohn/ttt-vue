@@ -7,6 +7,7 @@
     <h3 class="status">{{ status }}</h3>
     <Board
         :squares="current.squares"
+        :line="line"
         @whichClick="handleClick"
     />
   </div>
@@ -30,10 +31,12 @@ let history = reactive<IHistory[]>([
 ])
 const xIsNext = ref<boolean>(true)
 const stepNumber = ref<number>(0)
+const line = ref<number[]>([])
 const current = computed(() => history[stepNumber.value])
 const status = computed(() => {
   const winner = calculateWinner(current.value.squares)
   if (winner) {
+    line.value = winner.line
     return "Winner: " + winner.value
   } else {
     if (current.value.squares.every(item => !!item === true)) {
@@ -45,6 +48,7 @@ const status = computed(() => {
 })
 
 const handleClick = (n: number):void => {
+  if (calculateWinner(current.value.squares) || current.value.squares[n]) return
   const squares = current.value.squares.slice();
   squares[n] = xIsNext.value ? "X" : "O"
   history.push({

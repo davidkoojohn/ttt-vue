@@ -3,8 +3,9 @@
     <Square
         v-for="(item, index) of props.squares"
         :key="index"
-        :val="item"
+        :value="item"
         :index="index"
+        :bgRed="isRedBg(index)"
         @whichClick="handleClick"
     />
   </div>
@@ -14,8 +15,11 @@
 import Square from "./Square.vue"
 
 const props = defineProps<{
-  squares: any[]
+  squares: any[],
+  line: number[]
 }>()
+
+const isRedBg = (n) => props.line.includes(n)
 
 const emit = defineEmits<{
   (e: "whichClick" , n: number): void

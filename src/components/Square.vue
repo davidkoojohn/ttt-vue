@@ -1,13 +1,17 @@
 <template>
-  <button @click="handleClick(props.index)">
-    {{ props.val }}
+  <button
+      :class="{ red: props.bgRed }"
+      @click="handleClick(props.index)"
+  >
+    {{ props.value }}
   </button>
 </template>
 
 <script setup lang="ts">
 const props = defineProps<{
-  val: any,
-  index: number
+  value: any,
+  index: number,
+  bgRed: boolean
 }>()
 
 const emit = defineEmits<{
@@ -28,5 +32,9 @@ button {
   background-color: #fff;
   font-size: 24px;
   font-weight: 700;
+}
+
+button.red {
+  background: red;
 }
 </style>
