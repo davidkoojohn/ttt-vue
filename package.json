@@ -4,7 +4,7 @@
   "homepage": "https://github.com/davidkoojohn/ttt-vue",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build",
+    "build": "vite build",
     "serve": "vite preview",
     "predeploy": "npm run build",
     "deploy": "node ./node_modules/vue-gh-pages/index.js"
