@@ -1,5 +1,5 @@
 <template>
-  <li>
+  <li :class="{ active: (props.step === props.index) }">
     <div>
       <template v-if="props.index !== 0">
         <i>{{ props.index }}.</i>
@@ -17,7 +17,8 @@ import {computed} from "vue";
 
 const props = defineProps<{
   index: number,
-  pos: number[]
+  pos: number[],
+  step: number,
 }>()
 
 const btnText = computed(() => {
@@ -46,6 +47,10 @@ li {
   box-sizing: border-box;
 }
 
+li.active {
+  background-color: #eeeeee;
+}
+
 li i {
   color: red;
   font-weight: 700;
@@ -54,5 +59,9 @@ li i {
 li .pos {
   color: #eee;
   margin-left: 20px;
+}
+
+li.active .pos {
+  color: #2c3e50;
 }
 </style>

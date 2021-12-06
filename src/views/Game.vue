@@ -17,6 +17,7 @@
             :key="index"
             :index="index"
             :pos="item.pos"
+            :step="stepNumber"
             @whichClick="moveHistory"
         />
       </ol>
